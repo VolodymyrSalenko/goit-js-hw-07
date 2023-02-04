@@ -19,7 +19,6 @@ return `<div class="gallery__item">
 
 galleryEl.insertAdjacentHTML('beforeend', galleryContent);
 
-const array = document.querySelectorAll('.gallery__item');
 let instance = '';
 
 galleryEl.addEventListener('click', (event) => {
@@ -32,7 +31,13 @@ galleryEl.addEventListener('click', (event) => {
     instance.show();
 
     document.addEventListener('keydown', closeModalEscape);
+
+    const modalEl = document.querySelector('.basicLightbox');
+    modalEl.addEventListener('click', () => {
+        document.removeEventListener('keydown', closeModalEscape);
+    });
 });
+
 
 function closeModalEscape(event) {
     if (event.code !== 'Escape') return;
